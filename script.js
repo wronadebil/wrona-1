@@ -679,15 +679,17 @@ function startApp() {
     const musicInfo = document.getElementById('music-info');
 
     if (overlay) {
-        overlay.style.opacity = '0';
-        setTimeout(() => { overlay.style.display = 'none'; }, 1000);
+        overlay.style.opacity = '0'; // To uruchomi transition, który masz w CSS
+        setTimeout(() => {
+            overlay.style.display = 'none'; // To całkowicie usunie czarny blok po 1 sekundzie
+        }, 1000);
     }
 
     if (audio) {
-        audio.play().catch(err => console.log("Audio block:", err));
+        audio.play().catch(err => console.log("Błąd audio:", err));
     }
 
     if (musicInfo) {
-        musicInfo.style.display = 'block'; // Pokazuje info pod suwakiem po kliknięciu
+        musicInfo.style.display = 'block'; // Pokazuje info o muzyce pod suwakiem
     }
 }
