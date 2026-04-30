@@ -776,22 +776,17 @@ body.car-theme {
 
 .music-container {
     position: fixed;
-    bottom: 10px;        /* Odstęp od dołu ekranu */
-    left: 20px;          /* Odstęp od lewej krawędzi, żeby pasowało do suwaka */
-    display: flex;
-    flex-direction: column; /* Ustawia tekst w pionie, jeśli chcesz go pod spodem */
-    background: rgba(0, 0, 0, 0.4);
-    padding: 5px 10px;
-    border-radius: 10px;
+    bottom: 45px;         /* To ustawi napis nad Twoim suwakiem */
+    left: 20px;           /* To wyrówna go do lewej krawędzi tak jak suwak */
+    background: transparent; /* Usuwamy tło, żeby był sam czysty tekst */
     color: white;
-    font-family: 'Arial', sans-serif;
-    font-size: 0.8rem;   /* Trochę mniejszy, żeby nie przytłaczał suwaka */
-    z-index: 999;
+    font-family: 'Courier New', monospace; /* Taka czcionka pasuje do klimatu "wrona" */
+    font-size: 12px;
+    z-index: 1000;
+    text-align: left;
 }
 
 .now-playing-text {
-    color: #bbb;
-    font-size: 0.7rem;
-    text-transform: uppercase;
+    opacity: 0.6;         /* Napis "Now playing" będzie lekko przygaszony */
+    margin-right: 5px;
 }
-

@@ -689,6 +689,6 @@ function startApp() {
     }
 }
 
-document.getElementById('track-name').innerText = 'NAZWA TWOJEGO KAWAŁKA';
+document.getElementById('track-name').innerText = 'Duvet by bôa';
 
 
