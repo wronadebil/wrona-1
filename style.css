@@ -775,3 +775,14 @@ body.car-theme {
   }
 }
 
+.music-container {
+    position: fixed !important;
+    bottom: 50px !important;    /* To podniesie napis nad suwak */
+    left: 15px !important;      /* To wyrówna go do lewej krawędzi */
+    right: auto !important;     /* To zabierze go z prawej strony */
+    text-align: left !important;
+    background: none !important;
+    color: white !important;
+    font-size: 11px !important;
+    z-index: 9999 !important;
+}
