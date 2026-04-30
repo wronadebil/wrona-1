@@ -777,15 +777,13 @@ body.car-theme {
 
 .music-container {
     position: fixed !important;
-    bottom: 5px !important;     /* Nisko, pod suwakiem */
-    left: 15px !important;      /* Wyrównane do lewej */
-    right: auto !important;
-    display: none;              /* Ukryte na starcie */
+    bottom: 5px !important;    /* To wrzuci tekst pod suwak */
+    left: 20px !important;     /* Wyrównanie do lewej jak suwak */
     color: white !important;
-    font-family: 'Space Mono', monospace;
     font-size: 10px !important;
-    opacity: 0.5;               /* Delikatny tekst, żeby nie walił po oczach */
+    font-family: 'Space Mono', monospace;
     z-index: 999;
+    opacity: 0.6;
 }
 
 #enter-screen.fade-out {

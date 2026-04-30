@@ -670,48 +670,24 @@ document.addEventListener('DOMContentLoaded', () => {
   typeWriterStart();
 });
 
+// Ustawienie nazwy utworu na starcie
+document.getElementById('track-name').innerText = 'Duvet by bôa';
+
 function startApp() {
     const overlay = document.getElementById('overlay');
     const audio = document.getElementById('myAudio');
+    const musicInfo = document.getElementById('music-info');
 
     if (overlay) {
         overlay.style.opacity = '0';
-        setTimeout(() => { 
-            overlay.style.display = 'none'; 
-        }, 1000);
-        if (audio) {
-    audio.currentTime = 0;
-    audio.play().catch(err => {
-        console.error("Błąd audio:", err);
-    });
-    // DOPISZ TĘ LINIJKĘ PONIŻEJ:
-    document.getElementById('music-info').style.display = 'block';
-}
+        setTimeout(() => { overlay.style.display = 'none'; }, 1000);
     }
 
     if (audio) {
-        audio.currentTime = 0;
-        audio.play().catch(err => {
-            console.error("Błąd audio:", err);
-        });
+        audio.play().catch(err => console.log("Audio block:", err));
+    }
+
+    if (musicInfo) {
+        musicInfo.style.display = 'block'; // Pokazuje info pod suwakiem po kliknięciu
     }
 }
-
-document.getElementById('track-name').innerText = 'Duvet by bôa'
-
-function enterSite() {
-    // Ukrywa ekran startowy
-    const enterScreen = document.getElementById('enter-screen');
-    enterScreen.classList.add('fade-out');
-    
-    // Pokazuje info o muzyce
-    document.getElementById('music-info').style.display = 'block';
-    
-    // Odpala muzykę (upewnij się, że Twój tag <audio> ma id="myAudio")
-    var audio = document.getElementById("myAudio");
-    if (audio) {
-        audio.play();
-    }
-}
-
-
