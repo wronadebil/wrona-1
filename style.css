@@ -774,3 +774,24 @@ body.car-theme {
   }
 }
 
+.music-container {
+    position: fixed;
+    bottom: 10px;        /* Odstęp od dołu ekranu */
+    left: 20px;          /* Odstęp od lewej krawędzi, żeby pasowało do suwaka */
+    display: flex;
+    flex-direction: column; /* Ustawia tekst w pionie, jeśli chcesz go pod spodem */
+    background: rgba(0, 0, 0, 0.4);
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.8rem;   /* Trochę mniejszy, żeby nie przytłaczał suwaka */
+    z-index: 999;
+}
+
+.now-playing-text {
+    color: #bbb;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+

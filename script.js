@@ -689,4 +689,6 @@ function startApp() {
     }
 }
 
+document.getElementById('track-name').innerText = 'NAZWA TWOJEGO KAWAŁKA';
+
 
