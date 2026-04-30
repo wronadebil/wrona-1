@@ -145,6 +145,17 @@
 </head>
 <body>
 
+    <!-- Nakładka Click to Enter -->
+<div id="enter-screen" onclick="enterSite()" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; color: white; display: flex; justify-content: center; align-items: center; z-index: 10000; cursor: pointer; font-family: 'Space Mono', monospace;">
+    <span>[ click to enter ]</span>
+</div>
+
+<!-- Sekcja muzyki - daj ją na samym dole przed </body> -->
+<div id="music-info" class="music-container">
+    <span class="now-playing-text">Now playing:</span>
+    <span id="track-name">Duvet by bôa</span>
+</div>
+
     <div id="overlay" onclick="startApp()">
         <p>[ click to enter ]</p>
     </div>
