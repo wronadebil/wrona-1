@@ -1,6 +1,3 @@
-body {
-    display: none !important;
-}
 
 :root {
   --primary-color: #00CED1; 
@@ -778,15 +775,3 @@ body.car-theme {
   }
 }
 
-.music-container {
-    position: fixed !important;
-    bottom: 55px !important;    /* Wyżej, żeby było nad suwakiem */
-    left: 15px !important;      /* Wyrównane do lewej */
-    right: auto !important;     /* Kasuje ewentualne wyrównanie do prawej */
-    top: auto !important;       /* Kasuje ewentualne wyrównanie do góry */
-    transform: none !important; /* Kasuje centrowanie */
-    background: none !important;
-    color: white !important;
-    z-index: 9999 !important;   /* Żeby nic tego nie przykryło */
-    text-align: left !important;
-}
