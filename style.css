@@ -774,3 +774,33 @@ body.car-theme {
     clip: rect(65px, 9999px, 45px, 0);
   }
 }
+
+.setup-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.setup-content.open {
+    max-height: 600px;
+    margin-top: 15px;
+}
+
+.setup-list {
+    list-style: none; /* Usuwa kropki */
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; /* Mała czcionka */
+    line-height: 1.5;
+    color: #888;
+}
+
+.setup-list span {
+    color: #fff;
+    margin-right: 5px;
+}

@@ -670,4 +670,10 @@ document.addEventListener('DOMContentLoaded', () => {
   typeWriterStart();
 });
 
+function toggleSetup() {
+    const setup = document.getElementById('setup-content');
+    if (setup) {
+        setup.classList.toggle('open');
+    }
+}
 

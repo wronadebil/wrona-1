@@ -10,6 +10,9 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Courier New', monospace;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         body {
@@ -141,6 +144,49 @@
         #mute-icon { cursor: pointer; font-size: 1.2rem; user-select: none; }
         #volume-slider { width: 80px; cursor: pointer; accent-color: #fff; }
 
+        /* --- SETUP CONTENT --- */
+        .setup-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            margin-top: 20px;
+        }
+
+        .setup-content.active {
+            max-height: 600px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .setup-list {
+            list-style: none;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+            font-family: 'Segoe UI', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .setup-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .setup-list li:last-child {
+            border-bottom: none;
+        }
+
+        .setup-list span {
+            color: #aaa;
+            font-weight: bold;
+            margin-right: 10px;
+            min-width: 80px;
+            display: inline-block;
+        }
+
     </style>
 </head>
 <body>
@@ -159,12 +205,29 @@
         <img src="assets/profile.jpg" alt="Profile Picture" class="pfp">
         <h1 class="nickname">wrona</h1>
 
-                <div class="socials">
+        <div class="socials">
             <a href="https://steamcommunity.com/id/wrona-" target="_blank" class="social-link">steam</a>
             <a href="https://faceit.com/pl/players/wrona-" target="_blank" class="social-link">faceit</a>
             <a href="https://youtube.com/@wrxnaaa" target="_blank" class="social-link">youtube</a>
-            <a href="https://pcpartpicker.com/list/bwHKZQ" target="_blank" class="social-link">pc parts</a>
+            <a href="javascript:void(0)" class="social-link" onclick="toggleSetup()">pc parts</a>
             <a href="https://myanimelist.net/profile/wrona-" target="_blank" class="social-link">anime list</a>
+        </div>
+
+        <div id="setup-content" class="setup-content">
+            <ul class="setup-list">
+                <li><span>CPU:</span> Intel Core i7-14700K</li>
+                <li><span>GPU:</span> MSI RTX 5070 Ti 16GB</li>
+                <li><span>RAM:</span> 32GB Kingston FURY Beast 6000MHz</li>
+                <li><span>SSD:</span> Samsung 990 Pro 2 TB</li>
+                <li><span>Cooler:</span> ENDORFY Navis F360 ARGB</li>
+                <li><span>MOBO:</span> Asus Z790 GAMING WIFI7</li>
+                <li><span>PSU:</span> be quiet! Dark Power 12 850W</li>
+                <li><span>CASE:</span> Lian Li O11 VISION COMPACT</li>
+                <li><span>Monitor:</span> BenQ ZOWIE XL2546X+ 280Hz</li>
+                <li><span>Mouse:</span> Razer Viper V3 Pro</li>
+                <li><span>Keyboard:</span> SteelSeries Apex Pro Mini Gen 3</li>
+                <li><span>Headset:</span> Logitech PRO X 2 LIGHTSPEED</li>
+            </ul>
         </div>
     </div>
 
@@ -222,6 +285,35 @@
     // Logowanie błędów pliku
     audio.addEventListener('error', () => {
         console.error("Nie znaleziono assets/track.mp3");
+    });
+
+    // Toggle dla setup
+    function toggleSetup() {
+        const setupContent = document.getElementById("setup-content");
+        setupContent.classList.toggle("active");
+    }
+
+    function updateStatusUI(status) {
+        const statusEl = document.querySelector(".status-indicator");
+        const statusText = document.querySelector(".status-text");
+
+        if (statusEl && statusText) {
+            const resolvedStatus = status || "offline";
+            statusEl.className = "status-indicator " + resolvedStatus;
+
+            const statusLabels = {
+                "online": "Online",
+                "idle": "Idle",
+                "dnd": "Do Not Disturb",
+                "offline": "Offline"
+            };
+
+            statusText.textContent = statusLabels[resolvedStatus] || "Offline";
+        }
+    }
+
+    window.addEventListener("load", () => {
+        updateStatusUI("offline");
     });
 </script>
 
