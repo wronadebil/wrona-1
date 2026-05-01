@@ -774,20 +774,3 @@ body.car-theme {
     clip: rect(65px, 9999px, 45px, 0);
   }
 }
-
-.music-container {
-    position: fixed !important;
-    bottom: 5px !important;    /* To wrzuci tekst pod suwak */
-    left: 20px !important;     /* Wyrównanie do lewej jak suwak */
-    color: white !important;
-    font-size: 10px !important;
-    font-family: 'Space Mono', monospace;
-    z-index: 999;
-    opacity: 0.6;
-}
-
-#enter-screen.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-}

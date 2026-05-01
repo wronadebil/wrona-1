@@ -670,26 +670,4 @@ document.addEventListener('DOMContentLoaded', () => {
   typeWriterStart();
 });
 
-// Ustawienie nazwy utworu na starcie
-document.getElementById('track-name').innerText = 'Duvet by bôa';
 
-function startApp() {
-    const overlay = document.getElementById('overlay');
-    const audio = document.getElementById('myAudio');
-    const musicInfo = document.getElementById('music-info');
-
-    if (overlay) {
-        overlay.style.opacity = '0'; // To uruchomi transition, który masz w CSS
-        setTimeout(() => {
-            overlay.style.display = 'none'; // To całkowicie usunie czarny blok po 1 sekundzie
-        }, 1000);
-    }
-
-    if (audio) {
-        audio.play().catch(err => console.log("Błąd audio:", err));
-    }
-
-    if (musicInfo) {
-        musicInfo.style.display = 'block'; // Pokazuje info o muzyce pod suwakiem
-    }
-}
