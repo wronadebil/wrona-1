@@ -53,47 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const socialIcons = document.querySelectorAll('.social-icon');
   const badges = document.querySelectorAll('.badge');
 
-  
-  const cursor = document.querySelector('.custom-cursor');
-  const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
-
-  if (isTouchDevice) {
-    document.body.classList.add('touch-device');
-    
-    document.addEventListener('touchstart', (e) => {
-      const touch = e.touches[0];
-      cursor.style.left = touch.clientX + 'px';
-      cursor.style.top = touch.clientY + 'px';
-      cursor.style.display = 'block';
-    });
-
-    document.addEventListener('touchmove', (e) => {
-      const touch = e.touches[0];
-      cursor.style.left = touch.clientX + 'px';
-      cursor.style.top = touch.clientY + 'px';
-      cursor.style.display = 'block';
-    });
-
-    document.addEventListener('touchend', () => {
-      cursor.style.display = 'none'; 
-    });
-  } else {
-
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      cursor.style.display = 'block';
-    });
-
-    document.addEventListener('mousedown', () => {
-      cursor.style.transform = 'scale(0.8) translate(-50%, -50%)';
-    });
-
-    document.addEventListener('mouseup', () => {
-      cursor.style.transform = 'scale(1) translate(-50%, -50%)';
-    });
-  }
-
 
   const startMessage = "Click here to see the motion baby";
   let startTextContent = '';
@@ -669,6 +628,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   typeWriterStart();
 });
+
+document.body.style.cursor = "url('assets/cursor.png') 16 16, auto";
 
 function toggleSetup() {
     const setup = document.getElementById('setup-content');

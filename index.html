@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wrona</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', monospace;
+            font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
@@ -23,6 +26,11 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+        }
+
+        body,
+        body * {
+            cursor: url('assets/cursor.png') 16 16, auto !important;
         }
 
         /* --- WSTĘP (OVERLAY) --- */
@@ -89,6 +97,7 @@
         }
 
         .nickname {
+            font-family: 'Courier New', monospace;
             font-size: 2.5rem;
             letter-spacing: 10px;
             font-weight: bold;
@@ -148,13 +157,12 @@
         .setup-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out;
             margin-top: 20px;
+            transition: max-height 0.3s ease;
         }
 
         .setup-content.active {
             max-height: 600px;
-            transition: max-height 0.5s ease-in;
         }
 
         .setup-list {
@@ -209,6 +217,7 @@
             <a href="https://steamcommunity.com/id/wrona-" target="_blank" class="social-link">steam</a>
             <a href="https://faceit.com/pl/players/wrona-" target="_blank" class="social-link">faceit</a>
             <a href="https://youtube.com/@wrxnaaa" target="_blank" class="social-link">youtube</a>
+            <a href="javascript:void(0)" class="social-link" onclick="toggleDiscord()">discord</a>
             <a href="javascript:void(0)" class="social-link" onclick="toggleSetup()">pc parts</a>
             <a href="https://myanimelist.net/profile/wrona-" target="_blank" class="social-link">anime list</a>
         </div>
@@ -227,6 +236,12 @@
                 <li><span>Mouse:</span> Razer Viper V3 Pro</li>
                 <li><span>Keyboard:</span> SteelSeries Apex Pro Mini Gen 3</li>
                 <li><span>Headset:</span> Logitech PRO X 2 LIGHTSPEED</li>
+            </ul>
+        </div>
+
+        <div id="discord-content" class="setup-content">
+            <ul class="setup-list">
+                <li><span>Discord:</span> tsunderewrona</li>
             </ul>
         </div>
     </div>
@@ -291,6 +306,12 @@
     function toggleSetup() {
         const setupContent = document.getElementById("setup-content");
         setupContent.classList.toggle("active");
+    }
+
+    // Toggle dla Discorda
+    function toggleDiscord() {
+        const discordContent = document.getElementById("discord-content");
+        discordContent.classList.toggle("active");
     }
 
     function updateStatusUI(status) {
