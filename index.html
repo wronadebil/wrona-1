@@ -213,6 +213,19 @@
         <img src="assets/profile.jpg" alt="Profile Picture" class="pfp">
         <h1 class="nickname">wrona</h1>
 
+        <!-- Licznik odwiedzin pod profilem -->
+<div style="font-family: monospace; color: #888; margin-bottom: 20px; font-size: 14px; text-align: center;">
+    odwiedziny: <span id="visits">...</span>
+</div>
+
+<script>
+function cb(response) {
+    // 5200 z konect.gg/wrona jakby jakis dzik nie wiedział <3
+    document.getElementById('visits').innerText = response.value + 5200;
+}
+</script>
+        
+<script async src="https://api.countapi.xyz/hit/wrona.lol/visits?callback=cb"></script>
         <div class="socials">
             <a href="https://steamcommunity.com/id/wrona-" target="_blank" class="social-link">steam</a>
             <a href="https://faceit.com/pl/players/wrona-" target="_blank" class="social-link">faceit</a>
