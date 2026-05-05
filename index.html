@@ -213,6 +213,75 @@
         <img src="assets/profile.jpg" alt="Profile Picture" class="pfp">
         <h1 class="nickname">wrona</h1>
         
+<style id="wrona-views-style">
+  #wrona-views {
+    margin: 0.65rem auto 0;
+    max-width: 18rem;
+    text-align: center;
+    font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.35;
+    -webkit-font-smoothing: antialiased;
+  }
+  #wrona-views b {
+    display: inline-block;
+    margin-right: 0.35em;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    font-variant-numeric: tabular-nums;
+    color: rgba(255, 255, 255, 0.78);
+  }
+  #wrona-views[data-state="err"] {
+    color: rgba(255, 180, 180, 0.55);
+    font-size: 0.75rem;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+</style>
+<div id="wrona-views" role="status" aria-live="polite">
+  <b id="wrona-views-num">…</b>views
+</div>
+<script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
+<script>
+  (function () {
+    var START_AT = 5200;
+    var WORKSPACE = "wrona-lol";
+    var KEY = "profile";
+
+      var el = document.getElementById("wrona-views");
+    var num = document.getElementById("wrona-views-num");
+    function show(n) {
+      num.textContent = n.toLocaleString("pl-PL");
+    }
+    if (typeof Counter === "undefined") {
+      el.setAttribute("data-state", "err");
+      el.innerHTML = "licznik niedostępny";
+      return;
+    }
+    if (location.protocol === "file:") {
+      el.setAttribute("data-state", "err");
+      el.textContent = "otwórz przez HTTPS";
+      return;
+    }
+    var counter = new Counter({ workspace: WORKSPACE });
+    counter
+      .up(KEY)
+      .then(function (r) {
+        show(START_AT - 1 + r.value);
+      })
+      .catch(function () {
+        el.setAttribute("data-state", "err");
+        el.textContent = "nie udało się załadować licznika";
+      });
+  })();
+</script>
+        
         <div class="socials">
             <a href="https://steamcommunity.com/id/wrona-" target="_blank" class="social-link">steam</a>
             <a href="https://faceit.com/pl/players/wrona-" target="_blank" class="social-link">faceit</a>
