@@ -225,27 +225,30 @@
     gap: 0.35em;
     direction: ltr;
     unicode-bidi: isolate;
-    font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, monospace;
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(200, 205, 212, 0.72);
     line-height: 1.35;
     -webkit-font-smoothing: antialiased;
   }
   #wrona-views .wrona-views-label {
     order: 1;
+    color: rgba(180, 186, 196, 0.65);
   }
   #wrona-views b {
     order: 2;
     display: inline-block;
-    font-weight: 600;
-    font-size: 0.9375rem;
-    letter-spacing: 0.02em;
+    font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
     text-transform: none;
-    font-variant-numeric: tabular-nums;
-    color: rgba(255, 255, 255, 0.78);
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+    color: rgba(210, 215, 222, 0.92);
   }
   #wrona-views[data-state="err"] {
     color: rgba(255, 180, 180, 0.55);
@@ -257,42 +260,58 @@
 <div id="wrona-views" role="status" aria-live="polite">
   <span class="wrona-views-label">views</span><b id="wrona-views-num">…</b>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 <script>
   (function () {
     var START_AT = 5200;
     var NAMESPACE = "wrona-lol";
     var KEY = "profile";
-    var el = document.getElementById("wrona-views");
-    var num = document.getElementById("wrona-views-num");
-    function show(n) {
-      num.textContent = n.toLocaleString("pl-PL");
-    }
-    if (typeof Counter === "undefined") {
-      el.setAttribute("data-state", "err");
-      el.innerHTML = "licznik niedostępny";
-      return;
-    }
-    if (location.protocol === "file:") {
-      el.setAttribute("data-state", "err");
-      el.textContent = "otwórz przez HTTPS";
-      return;
-    }
-    var counter = new Counter({ version: "v1", namespace: NAMESPACE });
-    counter
-      .up(KEY)
-      .then(function (r) {
-        var n = Number(r && (r.count != null ? r.count : r.value));
-        if (!Number.isFinite(n)) throw new Error("brak liczby w odpowiedzi API");
-        show(START_AT - 1 + n);
-      })
-      .catch(function (err) {
+    var API =
+      "https://api.counterapi.dev/v1/" +
+      encodeURIComponent(NAMESPACE) +
+      "/" +
+      encodeURIComponent(KEY) +
+      "/up";
+
+    function run() {
+      var el = document.getElementById("wrona-views");
+      var num = document.getElementById("wrona-views-num");
+      if (!el || !num) return;
+
+      function fail(msg) {
         el.setAttribute("data-state", "err");
-        el.textContent =
-          "nie udało się załadować licznika" +
-          (err && err.status ? " (" + err.status + ")" : "");
-        console.error("wrona views counter:", err);
-      });
+        el.textContent = msg;
+      }
+
+      function show(n) {
+        num.textContent = n.toLocaleString("pl-PL");
+      }
+
+      if (location.protocol === "file:") {
+        fail("otwórz przez HTTPS");
+        return;
+      }
+
+      fetch(API, { method: "GET", cache: "no-store", credentials: "omit" })
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          var n = Number(data && (data.count != null ? data.count : data.value));
+          if (!Number.isFinite(n)) throw new Error("brak count w JSON");
+          show(START_AT - 1 + n);
+        })
+        .catch(function (err) {
+          fail("nie udało się załadować licznika");
+          console.error("wrona views:", err);
+        });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", run);
+    } else {
+      run();
+    }
   })();
 </script>
         
