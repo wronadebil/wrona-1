@@ -218,24 +218,26 @@
     margin: 0.65rem auto 0;
     max-width: 18rem;
     text-align: center;
-    font-family: ui-monospace, "Cascadia Mono", "Consolas", "Courier New", monospace;
-    font-size: 0.75rem;
+    font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.8125rem;
     font-weight: 500;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.42);
-    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.35;
     -webkit-font-smoothing: antialiased;
+  }
+  #wrona-views .wrona-views-label {
+    margin-right: 0.35em;
   }
   #wrona-views b {
     display: inline-block;
-    margin-right: 0.4em;
     font-weight: 600;
-    font-size: 0.8125rem;
-    letter-spacing: 0.04em;
+    font-size: 0.9375rem;
+    letter-spacing: 0.02em;
     text-transform: none;
     font-variant-numeric: tabular-nums;
-    color: rgba(255, 255, 255, 0.82);
+    color: rgba(255, 255, 255, 0.78);
   }
   #wrona-views[data-state="err"] {
     color: rgba(255, 180, 180, 0.55);
@@ -245,7 +247,7 @@
   }
 </style>
 <div id="wrona-views" role="status" aria-live="polite">
-  <b id="wrona-views-num">…</b>views
+  <span class="wrona-views-label">views</span><b id="wrona-views-num">…</b>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 <script>
