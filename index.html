@@ -213,27 +213,10 @@
         <img src="assets/profile.jpg" alt="Profile Picture" class="pfp">
         <h1 class="nickname">wrona</h1>
 
-<!-- Licznik views pod profilem -->
+<!-- Licznik views -->
 <div style="font-family: monospace; color: #888; margin-bottom: 20px; font-size: 14px; text-align: center;">
-    views: <span id="visit-count">5211</span>
+    views: 52<img src="https://komarev.com/ghpvc/?username=wrona-nowy-licznik&color=grey&style=flat-square&label=" alt="views" style="vertical-align: middle; display: inline-block;">
 </div>
-
-<script>
-  async function updateCounter() {
-    try {
-      // Próba pobrania realnej liczby z API
-      const res = await fetch('https://api.countapi.xyz/hit/wrona.lol/visits');
-      if (res.ok) {
-        const data = await res.json();
-        document.getElementById('visit-count').innerText = data.value + 5211;
-      }
-    } catch (e) {
-      // 5200 z konect.gg/wrona
-      console.log("Licznik chwilowo niedostępny, pokazuję bazę.");
-    }
-  }
-  updateCounter();
-</script>
         
         <div class="socials">
             <a href="https://steamcommunity.com/id/wrona-" target="_blank" class="social-link">steam</a>
