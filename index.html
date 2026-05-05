@@ -280,7 +280,11 @@
     counter
       .up(KEY)
       .then(function (r) {
-        show(START_AT - 1 + r.value);
+        var n = Number(r && (r.count != null ? r.count : r.value));
+        if (!Number.isFinite(n)) {
+          throw new Error("brak liczby w odpowiedzi API");
+        }
+        show(START_AT - 1 + n);
       })
       .catch(function (err) {
         el.setAttribute("data-state", "err");
