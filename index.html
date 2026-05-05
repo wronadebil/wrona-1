@@ -218,24 +218,24 @@
     margin: 0.65rem auto 0;
     max-width: 18rem;
     text-align: center;
-    font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 0.8125rem;
+    font-family: ui-monospace, "Cascadia Mono", "Consolas", "Courier New", monospace;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
-    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.42);
+    line-height: 1.4;
     -webkit-font-smoothing: antialiased;
   }
   #wrona-views b {
     display: inline-block;
-    margin-right: 0.35em;
+    margin-right: 0.4em;
     font-weight: 600;
-    font-size: 0.9375rem;
-    letter-spacing: 0.02em;
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
     text-transform: none;
     font-variant-numeric: tabular-nums;
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, 0.82);
   }
   #wrona-views[data-state="err"] {
     color: rgba(255, 180, 180, 0.55);
@@ -251,33 +251,43 @@
 <script>
   (function () {
     var START_AT = 5200;
-    var WORKSPACE = "wrona-lol";
+    var NAMESPACE = "wrona-lol";
     var KEY = "profile";
 
-      var el = document.getElementById("wrona-views");
+    var el = document.getElementById("wrona-views");
     var num = document.getElementById("wrona-views-num");
+
     function show(n) {
       num.textContent = n.toLocaleString("pl-PL");
     }
+
     if (typeof Counter === "undefined") {
       el.setAttribute("data-state", "err");
       el.innerHTML = "licznik niedostępny";
       return;
     }
+
     if (location.protocol === "file:") {
       el.setAttribute("data-state", "err");
       el.textContent = "otwórz przez HTTPS";
       return;
     }
-    var counter = new Counter({ workspace: WORKSPACE });
+
+    var counter = new Counter({
+      version: "v1",
+      namespace: NAMESPACE,
+    });
     counter
       .up(KEY)
       .then(function (r) {
         show(START_AT - 1 + r.value);
       })
-      .catch(function () {
+      .catch(function (err) {
         el.setAttribute("data-state", "err");
-        el.textContent = "nie udało się załadować licznika";
+        el.textContent =
+          "nie udało się załadować licznika" +
+          (err && err.status ? " (" + err.status + ")" : "");
+        console.error("wrona views counter:", err);
       });
   })();
 </script>
