@@ -213,10 +213,21 @@
         <img src="assets/profile.jpg" alt="Profile Picture" class="pfp">
         <h1 class="nickname">wrona</h1>
 
-<!-- Nowy licznik z innej strony -->
+<!-- Stabilny licznik views -->
 <div style="font-family: monospace; color: #888; margin-bottom: 20px; font-size: 14px; text-align: center;">
-    views: <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fwrona.lol%2Flicznik&count_bg=%2379C83D00&title_bg=%2355555500&icon=&icon_color=%23E7E7E7&title=&edge_flat=true" alt="views" style="vertical-align: middle;">
+    views: <span id="visit-count">5200</span>
 </div>
+
+<script>
+  fetch('https://api.counterapi.dev/v1/wrona-lol/visits/up')
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('visit-count').innerText = data.count + 5200;
+    })
+    .catch(() => {
+      document.getElementById('visit-count').innerText = "5200+";
+    });
+</script>
         
         <div class="socials">
             <a href="https://steamcommunity.com/id/wrona-" target="_blank" class="social-link">steam</a>
