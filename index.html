@@ -217,7 +217,14 @@
   #wrona-views {
     margin: 0.65rem auto 0;
     max-width: 18rem;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.35em;
+    direction: ltr;
+    unicode-bidi: isolate;
     font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 0.8125rem;
     font-weight: 500;
@@ -227,9 +234,12 @@
     line-height: 1.35;
     -webkit-font-smoothing: antialiased;
   }
+  #wrona-views .wrona-views-label {
+    order: 1;
+  }
   #wrona-views b {
+    order: 2;
     display: inline-block;
-    margin-right: 0.35em;
     font-weight: 600;
     font-size: 0.9375rem;
     letter-spacing: 0.02em;
@@ -245,7 +255,7 @@
   }
 </style>
 <div id="wrona-views" role="status" aria-live="polite">
-  <b id="wrona-views-num">…</b><span class="wrona-views-label">views</span>
+  <span class="wrona-views-label">views</span><b id="wrona-views-num">…</b>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 <script>
@@ -253,37 +263,27 @@
     var START_AT = 5200;
     var NAMESPACE = "wrona-lol";
     var KEY = "profile";
-
     var el = document.getElementById("wrona-views");
     var num = document.getElementById("wrona-views-num");
-
     function show(n) {
       num.textContent = n.toLocaleString("pl-PL");
     }
-
     if (typeof Counter === "undefined") {
       el.setAttribute("data-state", "err");
       el.innerHTML = "licznik niedostępny";
       return;
     }
-
     if (location.protocol === "file:") {
       el.setAttribute("data-state", "err");
       el.textContent = "otwórz przez HTTPS";
       return;
     }
-
-    var counter = new Counter({
-      version: "v1",
-      namespace: NAMESPACE,
-    });
+    var counter = new Counter({ version: "v1", namespace: NAMESPACE });
     counter
       .up(KEY)
       .then(function (r) {
         var n = Number(r && (r.count != null ? r.count : r.value));
-        if (!Number.isFinite(n)) {
-          throw new Error("brak liczby w odpowiedzi API");
-        }
+        if (!Number.isFinite(n)) throw new Error("brak liczby w odpowiedzi API");
         show(START_AT - 1 + n);
       })
       .catch(function (err) {
