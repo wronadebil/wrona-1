@@ -1,4 +1,6 @@
 export const config = { runtime: "edge" };
+// licznik api do wyswietlen ale nie dokonczony
+
 
 export default async function handler(request) {
   const cors = {
